@@ -3,18 +3,18 @@ import {Link} from 'react-router-dom'
 
 function CaptainLogin() {
   const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-  
-    const [userData, setUserData] = useState({})
-  
-    const submitHandler = (e) => {
-      e.preventDefault()
-      setUserData({
-        email: email,
-        password: password
-      })
-      setEmail('')
-      setPassword('')
+  const [password, setPassword] = useState('')
+
+  const [captainData, setCaptainData] = useState({})
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    setCaptainData({
+      email: email,
+      password: password
+    })
+    setEmail('')
+    setPassword('')
   }
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>
