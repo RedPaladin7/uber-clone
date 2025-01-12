@@ -6,7 +6,7 @@ const blacklistTokenSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    createdAd: {
+    createdAt: {
         type: Date,
         default: Date.now,
         expires: 86400
