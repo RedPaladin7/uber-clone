@@ -3,6 +3,9 @@ import {useGSAP} from '@gsap/react'
 import gsap from 'gsap'
 import 'remixicon/fonts/remixicon.css'
 import LocationSearchPanel from '../components/LocationSearchPanel'
+import VehiclePanel from '../components/VehiclePanel'
+import ConfirmRide from '../components/ConfirmRide'
+import LookingForDriver from '../components/LookingForDriver'
 
 const Home = () => {
   const [pickup, setPickup] = useState('')
@@ -12,6 +15,10 @@ const Home = () => {
   const panelCloseRef = useRef(null)
   const [vehiclePanel, setVehiclePanel] = useState(false)
   const vehiclePanelRef = useRef(null)
+  const [confirmRidePanel, setConfirmRidePanel] = useState(false)
+  const confirmRidePanelRef = useRef(null)
+  const [vehicleFound, setVehicleFound] = useState(false)
+  const vehicleFoundRef = useRef(null)
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -48,6 +55,30 @@ const Home = () => {
       })
     }
   }, [vehiclePanel])
+
+  useGSAP(function(){
+    if(confirmRidePanel){
+      gsap.to(confirmRidePanelRef.current, {
+        transform: 'translateY(0)'
+      })
+    } else {
+      gsap.to(confirmRidePanelRef.current, {
+        transform: 'translateY(100%)'
+      })
+    }
+  }, [confirmRidePanel])
+
+  useGSAP(function(){
+    if(vehicleFound){
+      gsap.to(vehicleFoundRef.current, {
+        transform: 'translateY(0)'
+      })
+    } else {
+      gsap.to(vehicleFoundRef.current, {
+        transform: 'translateY(100%)'
+      })
+    }
+  }, [vehicleFound])
 
   return (
     <div className='h-screen relative overflow-hidden'>
@@ -98,44 +129,14 @@ const Home = () => {
           <LocationSearchPanel setVehiclePanel={setVehiclePanel} setPanelOpen={setPanelOpen}/>
         </div>
       </div>
-      <div ref={vehiclePanelRef} className='w-full fixed translate-y-full z-10 bottom-0 bg-white px-3 py-10 pt-14'>
-        <h5 className='p-3 w-[90%] text-center absolute top-0' onClick={()=>{
-          setVehiclePanel(false)
-        }}><i className='text-3xl text-grey-300 ri-arrow-down-wide-line'></i></h5>
-        <h3 className='text-2xl font-semibold mb-5'>Choose a vehicle</h3>
-        <div className='w-full border-2 active:border-black rounded-xl flex items-center justify-between p-4 mb-2'>
-          <img className='h-12' src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"/>
-          <div className='w-1/2'>
-            <h4 className='font-medium text-base'>UberGo 
-              <span><i className='ri-user-3-fill'></i>4</span>
-            </h4>
-            <h5 className='font-medium text-lg'>2 mins away</h5>
-            <p className='font-normal text-xs'>Affordable, compact rides</p>
-          </div>
-          <h2 className='text-xl font-semibold'>₹193.20</h2>
-        </div>
-        <div className='w-full border-2 active:border-black rounded-xl flex items-center justify-between p-4 mb-2'>
-          <img className='h-12' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1649231091/assets/2c/7fa194-c954-49b2-9c6d-a3b8601370f5/original/Uber_Moto_Orange_312x208_pixels_Mobile.png"/>
-          <div className='ml-2 w-1/2'>
-            <h4 className='font-medium text-base'>Moto 
-              <span><i className='ri-user-3-fill'></i>1</span>
-            </h4>
-            <h5 className='font-medium text-lg'>3 mins away</h5>
-            <p className='font-normal text-xs'>Affordable motorcycle ride</p>
-          </div>
-          <h2 className='text-xl font-semibold'>₹65.17</h2>
-        </div>
-        <div className='w-full border-2 active:border-black rounded-xl flex items-center justify-between p-4 mb-2'>
-          <img className='h-12' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1648431773/assets/1d/db8c56-0204-4ce4-81ce-56a11a07fe98/original/Uber_Auto_558x372_pixels_Desktop.png"/>
-          <div className='ml-2 w-1/2'>
-            <h4 className='font-medium text-base'>UberAuto 
-              <span><i className='ri-user-3-fill'></i>3</span>
-            </h4>
-            <h5 className='font-medium text-lg'>2 mins away</h5>
-            <p className='font-normal text-xs'>Affordable auto rides</p>
-          </div>
-          <h2 className='text-xl font-semibold'>₹118.21</h2>
-        </div>
+      <div ref={vehiclePanelRef} className='w-full fixed translate-y-full z-10 bottom-0 bg-white px-3 py-6 pt-12'>
+        <VehiclePanel setConfirmRidePanel={setConfirmRidePanel} setVehiclePanel={setVehiclePanel}/>
+      </div>
+      <div ref={confirmRidePanelRef} className='w-full fixed translate-y-full z-10 bottom-0 bg-white px-3 py-6 pt-12'>
+        <ConfirmRide setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound}/>
+      </div>
+      <div ref={vehicleFoundRef} className='w-full fixed translate-y-full z-10 bottom-0 bg-white px-3 py-6 pt-12'>
+        <LookingForDriver setVehicleFound={setVehicleFound}/>
       </div>
     </div>
   )
