@@ -4,25 +4,28 @@ import { Link } from 'react-router-dom';
 const Riding = () => {
   return (
     <div className="h-screen">
-      <Link to='/home' className='right-2 top-2 b fixed h-10 w-10 bg-white flex items-center justify-center rounded-full'>
-        <i className='text-lg font-medium ri-home-5-line'></i>
+      <Link
+        to="/home"
+        className="right-2 top-2 b fixed h-10 w-10 bg-white flex items-center justify-center rounded-full"
+      >
+        <i className="text-lg font-medium ri-home-5-line"></i>
       </Link>
       <div className="h-1/2">
         <img src="https://simonpan.com/wp-content/themes/sp_portfolio/assets/uber-challenge.jpg" />
       </div>
-      <div className="h-1/2">
+      <div className="h-1/2 p-4">
         <div className="flex items-center justify-between">
           <img
-            className="h-12 p-4"
+            className="h-12"
             src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"
           />
           <div className="text-right">
-            <h2 className="text-lg font-medium">Sarthak</h2>
-            <h4 className="text-xl font-semibold -mt-1 -md-1">MP04 AB 1234</h4>
-            <p className="font-sm text-gray0699">Maruti Suzuki Alto</p>
+            <h2 className="text-lg font-medium capitalize">Sarthak</h2>
+            <h4 className="text-xl font-semibold -mt-1 -mb-1">MP04 AB 1234</h4>
+            <p className="text-sm text-gray-600">Maruti Suzuki Alto</p>
           </div>
         </div>
-        <div className="flex gap-4 justify-between flex-col items-center"></div>
+        <div className="flex gap-2 justify-between flex-col items-center"></div>
         <div className="w-full mt-5">
           <div className="flex items-center gap-5 p-3 border-b-2">
             <i className="text-lg ri-map-pin-user-fill"></i>
@@ -41,7 +44,9 @@ const Riding = () => {
             </div>
           </div>
         </div>
-        <button className='w-full bg-green-600 text-white font-semibold p-2 rounded-lg mt-5'>Make a payment</button>
+        <button className="w-full bg-green-600 text-white font-semibold p-2 rounded-lg mt-5">
+          Make a payment
+        </button>
       </div>
     </div>
   );
